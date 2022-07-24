@@ -5,11 +5,11 @@ import {createState, Downgraded,
 
 let id = 0;
 
-const dialogs = createState<ComponentProps<typeof Dialog>[]>([]);
-const wrapper = (state:State<ComponentProps<typeof Dialog>[]>)=> ({
+const dialogs = createState<ComponentProps<any>[]>([]);
+const wrapper = (state:State<ComponentProps<any>[]>)=> ({
     get: ()=>
         state.attach(Downgraded).value,
-    createDialog: (dialog:ComponentProps<typeof Dialog>)=>
+    createDialog: (dialog:ComponentProps<any>)=>
         state.merge([{
             id: id++,
             ...dialog
