@@ -1,0 +1,9 @@
+# Dependency
+node_modules/
+
+# Dist
+dist/
+
+# Others
+.idea/
+.DS_Store

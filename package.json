@@ -1,0 +1,33 @@
+{
+  "name": "@kozakl/states",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "author": {
+    "name": "Luke Kozak",
+    "email": "kozakluke@gmail.com",
+    "url": "https://github.com/kozakl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kozakl/react-states"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "publish-dist": "npm run build && cp package.json ./dist && npm publish ./dist --access=public"
+  },
+  "peerDependencies": {
+    "@kozakl/utils": "^9.1.0",
+    "@types/draft-js": "^0.10.44",
+    "@types/draftjs-to-html": "^0.8.0",
+    "@types/html-to-draftjs": "^1.4.0",
+    "@types/react": "^17.0.2",
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
+    "html-to-draftjs": "^1.5.0",
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.6",
+    "typescript": "^4.7.0"
+  }
+}
