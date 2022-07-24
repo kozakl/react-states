@@ -1,12 +1,12 @@
 import {ComponentProps, ReactNode} from 'react';
 import {createState, Downgraded,
         State, useState} from '@hookstate/core';
-//import {Toast} from '../components/toasts/toast';
+import {Toast} from '@kozakl/components/toasts/toast';
 
 let id = 0;
 
-const toasts = createState<ComponentProps<any>[]>([]);
-const wrapper = (state:State<ComponentProps<any>[]>)=> ({
+const toasts = createState<ComponentProps<typeof Toast>[]>([]);
+const wrapper = (state:State<ComponentProps<typeof Toast>[]>)=> ({
     get: ()=>
         state.attach(Downgraded).value,
     createToast: (body:ReactNode, autoClose = true)=>
@@ -24,5 +24,4 @@ const wrapper = (state:State<ComponentProps<any>[]>)=> ({
 
 export const toastsState = (()=> wrapper(toasts))();
 export const useToastsState = ()=> wrapper(
-    //useState<ComponentProps<typeof Toast>[]>(toasts));
-    useState<ComponentProps<any>[]>(toasts));
+    useState<ComponentProps<typeof Toast>[]>(toasts));
