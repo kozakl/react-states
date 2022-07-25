@@ -1,15 +1,14 @@
-import {ComponentProps} from 'react';
+import {ReactNode} from 'react';
 import {createState, Downgraded,
         State, useState} from '@hookstate/core';
-import {Dialog} from '@kozakl/components/dialog';
 
 let id = 0;
 
-const dialogs = createState<ComponentProps<typeof Dialog>[]>([]);
-const wrapper = (state:State<ComponentProps<typeof Dialog>[]>)=> ({
+const dialogs = createState<DialogProps[]>([]);
+const wrapper = (state:State<DialogProps[]>)=> ({
     get: ()=>
         state.attach(Downgraded).value,
-    createDialog: (dialog:ComponentProps<typeof Dialog>)=>
+    createDialog: (dialog:DialogProps)=>
         state.merge([{
             id: id++,
             ...dialog
@@ -20,6 +19,17 @@ const wrapper = (state:State<ComponentProps<typeof Dialog>[]>)=> ({
                 dialog.id != id))
 });
 
+interface DialogProps {
+    className?:string;
+    id?:number;
+    title:string;
+    message:ReactNode;
+    reversed?:boolean;
+    confirm?:string;
+    dismiss?:string;
+    onConfirm?:()=> void;
+    onDismiss?:()=> void;
+}
+
 export const dialogsState = (()=> wrapper(dialogs))();
-export const useDialogsState = ()=> wrapper(
-    useState<ComponentProps<typeof Dialog>[]>(dialogs));
+export const useDialogsState = ()=> wrapper(useState<DialogProps[]>(dialogs));
